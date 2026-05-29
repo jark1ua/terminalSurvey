@@ -1,0 +1,242 @@
+"NewCal_SpanAdjust As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =RGBA(243, 242, 241, 1)
+    OnVisible: =Set(varCalStep, 3)
+
+    NCXHeaderBar As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(0, 120, 212, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =80
+        PaddingLeft: =100
+        Size: =20
+        Text: ="New Calibration — Span Adjust"
+        Width: =Parent.Width
+        ZIndex: =1
+
+    NCXBackButton As button:
+        BorderColor: =RGBA(255, 255, 255, 0.4)
+        BorderThickness: =1
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        HoverFill: =RGBA(255, 255, 255, 0.1)
+        OnSelect: =Back()
+        PressedFill: =RGBA(255, 255, 255, 0.2)
+        Text: ="<  Back"
+        Width: =80
+        X: =16
+        Y: =20
+        ZIndex: =2
+
+    NCXStepText As label:
+        Align: =Align.Right
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 1)
+        Font: =Font.'Segoe UI'
+        Height: =30
+        PaddingRight: =20
+        Size: =13
+        Text: =If(IsBlank(varCalAsset), "Step 3 of 4 — Span Adjust", "Step 3 of 4 — " & varCalAsset.Title)
+        Width: =500
+        X: =Parent.Width - Self.Width
+        Y: =25
+        ZIndex: =3
+
+    NCXStep1Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(0, 120, 212, 1)
+        Height: =4
+        Text: =""
+        Width: =Min((Parent.Width - 80) / 4, 180)
+        X: =(Parent.Width - Self.Width * 4 - 24) / 2
+        Y: =NCXHeaderBar.Y + NCXHeaderBar.Height + 12
+        ZIndex: =4
+
+    NCXStep2Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(0, 120, 212, 1)
+        Height: =4
+        Text: =""
+        Width: =NCXStep1Dot.Width
+        X: =NCXStep1Dot.X + NCXStep1Dot.Width + 8
+        Y: =NCXStep1Dot.Y
+        ZIndex: =5
+
+    NCXStep3Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(0, 120, 212, 1)
+        Height: =4
+        Text: =""
+        Width: =NCXStep1Dot.Width
+        X: =NCXStep2Dot.X + NCXStep2Dot.Width + 8
+        Y: =NCXStep1Dot.Y
+        ZIndex: =6
+
+    NCXStep4Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(225, 223, 221, 1)
+        Height: =4
+        Text: =""
+        Width: =NCXStep1Dot.Width
+        X: =NCXStep3Dot.X + NCXStep3Dot.Width + 8
+        Y: =NCXStep1Dot.Y
+        ZIndex: =7
+
+    NCXContentBg As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Height: =Parent.Height - NCXHeaderBar.Height - 40
+        Text: =""
+        Width: =Min(Parent.Width, 700)
+        X: =(Parent.Width - Self.Width) / 2
+        Y: =NCXHeaderBar.Y + NCXHeaderBar.Height + 40
+        ZIndex: =8
+
+    NCXRangeCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =280
+        Text: =""
+        Width: =NCXContentBg.Width - 40
+        X: =NCXContentBg.X + 20
+        Y: =NCXContentBg.Y
+        ZIndex: =9
+
+    NCXRangeTitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Size: =16
+        Text: ="New Range"
+        Width: =NCXRangeCard.Width - 40
+        X: =NCXRangeCard.X + 20
+        Y: =NCXRangeCard.Y + 16
+        ZIndex: =10
+
+    NCXRangeHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =60
+        Size: =12
+        Text: |-
+            =If(
+                IsBlank(varCalAsset),
+                "Enter the new LRV and URV for the device. Leave either blank to keep the existing value.",
+                "Current range on " & varCalAsset.Title & ": LRV " & Coalesce(Text(varCalAsset.LRV), "—") & " / URV " & Coalesce(Text(varCalAsset.URV), "—") & ". Enter new values to push to the device. Leave either blank to keep its existing value."
+            )
+        Width: =NCXRangeCard.Width - 40
+        X: =NCXRangeCard.X + 20
+        Y: =NCXRangeTitle.Y + NCXRangeTitle.Height + 2
+        ZIndex: =11
+
+    NCXLrvLabel As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =20
+        Size: =11
+        Text: ="NEW LRV"
+        Width: =(NCXRangeCard.Width - 60) / 2
+        X: =NCXRangeCard.X + 20
+        Y: =NCXRangeHint.Y + NCXRangeHint.Height + 10
+        ZIndex: =12
+
+    NCSpanNewLRV As text:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Default: =""
+        Font: =Font.'Segoe UI'
+        Format: =TextFormat.Number
+        Height: =54
+        HintText: ="leave blank if unchanged"
+        Size: =16
+        Width: =(NCXRangeCard.Width - 60) / 2
+        X: =NCXRangeCard.X + 20
+        Y: =NCXLrvLabel.Y + NCXLrvLabel.Height + 4
+        ZIndex: =13
+
+    NCXUrvLabel As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =20
+        Size: =11
+        Text: ="NEW URV"
+        Width: =(NCXRangeCard.Width - 60) / 2
+        X: =NCXRangeCard.X + 40 + (NCXRangeCard.Width - 60) / 2
+        Y: =NCXLrvLabel.Y
+        ZIndex: =14
+
+    NCSpanNewURV As text:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Default: =""
+        Font: =Font.'Segoe UI'
+        Format: =TextFormat.Number
+        Height: =54
+        HintText: ="leave blank if unchanged"
+        Size: =16
+        Width: =(NCXRangeCard.Width - 60) / 2
+        X: =NCXUrvLabel.X
+        Y: =NCSpanNewLRV.Y
+        ZIndex: =15
+
+    NCXNextButton As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        DisabledFill: =RGBA(225, 223, 221, 1)
+        DisplayMode: =If(IsBlank(NCSpanNewLRV.Text) && IsBlank(NCSpanNewURV.Text), DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(0, 120, 212, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =54
+        HoverFill: =RGBA(16, 110, 190, 1)
+        OnSelect: |-
+            =Set(varNewLRV, NCSpanNewLRV.Text);
+            Set(varNewURV, NCSpanNewURV.Text);
+            Set(varAbsError, 0);
+            Set(varErrorPctSpan, 0);
+            Navigate(NewCal_Equipment, ScreenTransition.None)
+        PressedFill: =RGBA(0, 90, 158, 1)
+        Size: =15
+        Text: |-
+            ="Next: Equipment  >"
+        Width: =(NCXContentBg.Width - 60) / 2
+        X: =NCXContentBg.X + 40 + (NCXContentBg.Width - 60) / 2
+        Y: =NCXRangeCard.Y + NCXRangeCard.Height + 20
+        ZIndex: =16
+
+    NCXPrevButton As button:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Color: =RGBA(50, 49, 48, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =54
+        HoverFill: =RGBA(247, 247, 246, 1)
+        OnSelect: =Back()
+        PressedFill: =RGBA(237, 237, 236, 1)
+        Size: =15
+        Text: ="<  Previous"
+        Width: =(NCXContentBg.Width - 60) / 2
+        X: =NCXContentBg.X + 20
+        Y: =NCXNextButton.Y
+        ZIndex: =17
+

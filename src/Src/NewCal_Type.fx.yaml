@@ -1,0 +1,347 @@
+"NewCal_Type As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =RGBA(243, 242, 241, 1)
+    OnVisible: =Set(varCalStep, 1)
+
+    NCTHeaderBar As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(16, 124, 16, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =80
+        PaddingLeft: =100
+        Size: =20
+        Text: ="New Calibration"
+        Width: =Parent.Width
+        ZIndex: =1
+
+    NCTBackButton As button:
+        BorderColor: =RGBA(255, 255, 255, 0.4)
+        BorderThickness: =1
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        HoverFill: =RGBA(255, 255, 255, 0.1)
+        OnSelect: =Back()
+        PressedFill: =RGBA(255, 255, 255, 0.2)
+        Text: ="<  Cancel"
+        Width: =80
+        X: =16
+        Y: =20
+        ZIndex: =2
+
+    NCTStepText As label:
+        Align: =Align.Right
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 1)
+        Font: =Font.'Segoe UI'
+        Height: =30
+        PaddingRight: =20
+        Size: =13
+        Text: ="Step 1 of 4 — Calibration Type"
+        Width: =340
+        X: =Parent.Width - Self.Width
+        Y: =25
+        ZIndex: =3
+
+    NCTStep1Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(16, 124, 16, 1)
+        Height: =4
+        Text: =""
+        Width: =Min((Parent.Width - 80) / 4, 180)
+        X: =(Parent.Width - Self.Width * 4 - 24) / 2
+        Y: =NCTHeaderBar.Y + NCTHeaderBar.Height + 12
+        ZIndex: =4
+
+    NCTStep2Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(225, 223, 221, 1)
+        Height: =4
+        Text: =""
+        Width: =NCTStep1Dot.Width
+        X: =NCTStep1Dot.X + NCTStep1Dot.Width + 8
+        Y: =NCTStep1Dot.Y
+        ZIndex: =5
+
+    NCTStep3Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(225, 223, 221, 1)
+        Height: =4
+        Text: =""
+        Width: =NCTStep1Dot.Width
+        X: =NCTStep2Dot.X + NCTStep2Dot.Width + 8
+        Y: =NCTStep1Dot.Y
+        ZIndex: =6
+
+    NCTStep4Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(225, 223, 221, 1)
+        Height: =4
+        Text: =""
+        Width: =NCTStep1Dot.Width
+        X: =NCTStep3Dot.X + NCTStep3Dot.Width + 8
+        Y: =NCTStep1Dot.Y
+        ZIndex: =7
+
+    NCTContentBg As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Height: =Parent.Height - NCTHeaderBar.Height - 80
+        Text: =""
+        Width: =Min(Parent.Width, 880)
+        X: =(Parent.Width - Self.Width) / 2
+        Y: =NCTHeaderBar.Y + NCTHeaderBar.Height + 60
+        ZIndex: =8
+
+    NCTPrompt As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =34
+        Size: =18
+        Text: ="What kind of calibration are you logging?"
+        Width: =NCTContentBg.Width
+        X: =NCTContentBg.X
+        Y: =NCTContentBg.Y
+        ZIndex: =9
+
+    NCT5pCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =180
+        Text: =""
+        Width: =If(App.Width < 760, NCTContentBg.Width - 40, (NCTContentBg.Width - 60) / 2)
+        X: =NCTContentBg.X + 20
+        Y: =NCTPrompt.Y + NCTPrompt.Height + 20
+        ZIndex: =10
+
+    NCT5pTitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(16, 124, 16, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =34
+        Size: =18
+        Text: ="5-Point Calibration"
+        Width: =NCT5pCard.Width - 40
+        X: =NCT5pCard.X + 20
+        Y: =NCT5pCard.Y + 24
+        ZIndex: =11
+
+    NCT5pBody As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =91
+        Size: =13
+        Text: |-
+            ="Standard full-scale check: rising and falling outputs at 0%, 25%, 50%, 75% and 100% of the input range."
+        Width: =NCT5pCard.Width - 40
+        X: =NCT5pCard.X + 20
+        Y: =NCT5pTitle.Y + NCT5pTitle.Height + 6
+        ZIndex: =12
+
+    NCT5pClick As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 0)
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        Height: =NCT5pCard.Height
+        HoverFill: =RGBA(16, 124, 16, 0.05)
+        OnSelect: |-
+            =Set(varCalType, "5-Point");
+            Navigate(NewCal_Setup, ScreenTransition.None)
+        PressedFill: =RGBA(16, 124, 16, 0.1)
+        Size: =1
+        Text: =""
+        Width: =NCT5pCard.Width
+        X: =NCT5pCard.X
+        Y: =NCT5pCard.Y
+        ZIndex: =13
+
+    NCT2pCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =180
+        Text: =""
+        Width: =NCT5pCard.Width
+        X: =If(App.Width < 760, NCT5pCard.X, NCT5pCard.X + NCT5pCard.Width + 20)
+        Y: =If(App.Width < 760, NCT5pCard.Y + NCT5pCard.Height + 20, NCT5pCard.Y)
+        ZIndex: =14
+
+    NCT2pTitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(16, 124, 16, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =34
+        Size: =18
+        Text: ="2-Point Calibration"
+        Width: =NCT2pCard.Width - 40
+        X: =NCT2pCard.X + 20
+        Y: =NCT2pCard.Y + 24
+        ZIndex: =15
+
+    NCT2pBody As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =91
+        Size: =13
+        Text: |-
+            ="Endpoint check only: rising and falling outputs at 0% and 100% of the input range."
+        Width: =NCT2pCard.Width - 40
+        X: =NCT2pCard.X + 20
+        Y: =NCT2pTitle.Y + NCT2pTitle.Height + 6
+        ZIndex: =16
+
+    NCT2pClick As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 0)
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        Height: =NCT2pCard.Height
+        HoverFill: =RGBA(16, 124, 16, 0.05)
+        OnSelect: |-
+            =Set(varCalType, "2-Point");
+            Navigate(NewCal_Setup, ScreenTransition.None)
+        PressedFill: =RGBA(16, 124, 16, 0.1)
+        Size: =1
+        Text: =""
+        Width: =NCT2pCard.Width
+        X: =NCT2pCard.X
+        Y: =NCT2pCard.Y
+        ZIndex: =17
+
+    NCTZeroCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =180
+        Text: =""
+        Width: =NCT5pCard.Width
+        X: =NCT5pCard.X
+        Y: =If(App.Width < 760, NCT2pCard.Y + NCT2pCard.Height + 20, NCT5pCard.Y + NCT5pCard.Height + 20)
+        ZIndex: =18
+
+    NCTZeroTitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(0, 120, 212, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =34
+        Size: =18
+        Text: ="Zero Adjust"
+        Width: =NCTZeroCard.Width - 40
+        X: =NCTZeroCard.X + 20
+        Y: =NCTZeroCard.Y + 24
+        ZIndex: =19
+
+    NCTZeroBody As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =128
+        Size: =13
+        Text: ="Record the observed mA at zero input. The drift from 4 mA is calculated and stored as a signed value showing which way the transducer is drifting."
+        Width: =NCTZeroCard.Width - 40
+        X: =NCTZeroCard.X + 20
+        Y: =NCTZeroTitle.Y + NCTZeroTitle.Height + 6
+        ZIndex: =20
+
+    NCTZeroClick As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 0)
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        Height: =NCTZeroCard.Height
+        HoverFill: =RGBA(0, 120, 212, 0.05)
+        OnSelect: |-
+            =Set(varCalType, "Zero Adjust");
+            Navigate(NewCal_Setup, ScreenTransition.None)
+        PressedFill: =RGBA(0, 120, 212, 0.1)
+        Size: =1
+        Text: =""
+        Width: =NCTZeroCard.Width
+        X: =NCTZeroCard.X
+        Y: =NCTZeroCard.Y
+        ZIndex: =21
+
+    NCTSpanCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =180
+        Text: =""
+        Width: =NCT5pCard.Width
+        X: =If(App.Width < 760, NCT5pCard.X, NCT2pCard.X)
+        Y: =If(App.Width < 760, NCTZeroCard.Y + NCTZeroCard.Height + 20, NCTZeroCard.Y)
+        ZIndex: =22
+
+    NCTSpanTitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(0, 120, 212, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =34
+        Size: =18
+        Text: ="Span Adjust"
+        Width: =NCTSpanCard.Width - 40
+        X: =NCTSpanCard.X + 20
+        Y: =NCTSpanCard.Y + 24
+        ZIndex: =23
+
+    NCTSpanBody As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =105
+        Size: =13
+        Text: ="Re-range the device by entering a new LRV and/or URV. The new range is written to the cal record and pushed to the device list."
+        Width: =NCTSpanCard.Width - 40
+        X: =NCTSpanCard.X + 20
+        Y: =NCTSpanTitle.Y + NCTSpanTitle.Height + 6
+        ZIndex: =24
+
+    NCTSpanClick As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 0)
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        Height: =NCTSpanCard.Height
+        HoverFill: =RGBA(0, 120, 212, 0.05)
+        OnSelect: |-
+            =Set(varCalType, "Span Adjust");
+            Navigate(NewCal_Setup, ScreenTransition.None)
+        PressedFill: =RGBA(0, 120, 212, 0.1)
+        Size: =1
+        Text: =""
+        Width: =NCTSpanCard.Width
+        X: =NCTSpanCard.X
+        Y: =NCTSpanCard.Y
+        ZIndex: =25
+

@@ -1,0 +1,677 @@
+"NewCal_Equipment As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =RGBA(243, 242, 241, 1)
+    OnVisible: =Set(varCalStep, 4)
+
+    NCEHeaderBar As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(16, 124, 16, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =80
+        PaddingLeft: =100
+        Size: =20
+        Text: ="New Calibration"
+        Width: =Parent.Width
+        ZIndex: =1
+
+    NCEBackButton As button:
+        BorderColor: =RGBA(255, 255, 255, 0.4)
+        BorderThickness: =1
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        HoverFill: =RGBA(255, 255, 255, 0.1)
+        OnSelect: =Back()
+        PressedFill: =RGBA(255, 255, 255, 0.2)
+        Text: ="<  Back"
+        Width: =80
+        X: =16
+        Y: =20
+        ZIndex: =2
+
+    NCEStepText As label:
+        Align: =Align.Right
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 1)
+        Font: =Font.'Segoe UI'
+        Height: =30
+        PaddingRight: =20
+        Size: =13
+        Text: =If(IsBlank(varCalAsset), "Step 4 of 4 — Equipment & Submit", "Step 4 of 4 — " & varCalType & " — " & varCalAsset.Title)
+        Width: =500
+        X: =Parent.Width - Self.Width
+        Y: =25
+        ZIndex: =3
+
+    NCEStep1Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(16, 124, 16, 1)
+        Height: =4
+        Text: =""
+        Width: =Min((Parent.Width - 80) / 4, 180)
+        X: =(Parent.Width - Self.Width * 4 - 24) / 2
+        Y: =NCEHeaderBar.Y + NCEHeaderBar.Height + 12
+        ZIndex: =4
+
+    NCEStep2Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(16, 124, 16, 1)
+        Height: =4
+        Text: =""
+        Width: =NCEStep1Dot.Width
+        X: =NCEStep1Dot.X + NCEStep1Dot.Width + 8
+        Y: =NCEStep1Dot.Y
+        ZIndex: =5
+
+    NCEStep3Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(16, 124, 16, 1)
+        Height: =4
+        Text: =""
+        Width: =NCEStep1Dot.Width
+        X: =NCEStep2Dot.X + NCEStep2Dot.Width + 8
+        Y: =NCEStep1Dot.Y
+        ZIndex: =6
+
+    NCEStep4Dot As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(16, 124, 16, 1)
+        Height: =4
+        Text: =""
+        Width: =NCEStep1Dot.Width
+        X: =NCEStep3Dot.X + NCEStep3Dot.Width + 8
+        Y: =NCEStep1Dot.Y
+        ZIndex: =7
+
+    NCEContentBg As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Height: =Parent.Height - NCEHeaderBar.Height - 40
+        Text: =""
+        Width: =Min(Parent.Width, 820)
+        X: =(Parent.Width - Self.Width) / 2
+        Y: =NCEHeaderBar.Y + NCEHeaderBar.Height + 40
+        ZIndex: =8
+
+    NCECommentsCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =180
+        Text: =""
+        Width: =NCEContentBg.Width - 40
+        X: =NCEContentBg.X + 20
+        Y: =NCEContentBg.Y
+        ZIndex: =9
+
+    NCECommentsTitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =26
+        Text: ="Comments & Equipment Used"
+        Width: =NCECommentsCard.Width - 40
+        X: =NCECommentsCard.X + 20
+        Y: =NCECommentsCard.Y + 16
+        ZIndex: =10
+
+    NCEComments As text:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Default: =""
+        Font: =Font.'Segoe UI'
+        Height: =56
+        HintText: ="Notes about this calibration."
+        Mode: =TextMode.MultiLine
+        PaddingLeft: =10
+        Size: =13
+        Width: =(NCECommentsCard.Width - 60) / 2
+        X: =NCECommentsCard.X + 20
+        Y: =NCECommentsTitle.Y + NCECommentsTitle.Height + 8
+        ZIndex: =11
+
+    NCEEquipment As text:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Default: =""
+        Font: =Font.'Segoe UI'
+        Height: =56
+        HintText: ="Equipment used."
+        Mode: =TextMode.MultiLine
+        PaddingLeft: =10
+        Size: =13
+        Width: =(NCECommentsCard.Width - 60) / 2
+        X: =NCECommentsCard.X + 40 + (NCECommentsCard.Width - 60) / 2
+        Y: =NCEComments.Y
+        ZIndex: =12
+
+    NCECommentsHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =11
+        Text: ="COMMENTS"
+        Width: =(NCECommentsCard.Width - 60) / 2
+        X: =NCEComments.X
+        Y: =NCEComments.Y + NCEComments.Height + 4
+        ZIndex: =13
+
+    NCEEquipmentHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =11
+        Text: ="EQUIPMENT NOTES"
+        Width: =(NCECommentsCard.Width - 60) / 2
+        X: =NCEEquipment.X
+        Y: =NCECommentsHint.Y
+        ZIndex: =14
+
+    NCEEq1Card As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =If(App.Width < 600, 250, 170)
+        Text: =""
+        Width: =NCEContentBg.Width - 40
+        X: =NCEContentBg.X + 20
+        Y: =NCECommentsCard.Y + NCECommentsCard.Height + 16
+        ZIndex: =15
+
+    NCEEq1Title As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =26
+        Text: ="Calibration Equipment 1"
+        Width: =NCEEq1Card.Width - 40
+        X: =NCEEq1Card.X + 20
+        Y: =NCEEq1Card.Y + 16
+        ZIndex: =16
+
+    NCEq1Serial As text:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Default: =""
+        Font: =Font.'Segoe UI'
+        Height: =44
+        HintText: ="Serial No."
+        PaddingLeft: =10
+        Size: =13
+        Width: =If(App.Width < 600, (NCEEq1Card.Width - 56) / 2, (NCEEq1Card.Width - 92) / 4)
+        X: =NCEEq1Card.X + 20
+        Y: =NCEEq1Title.Y + NCEEq1Title.Height + 24
+        ZIndex: =17
+
+    NCEq1Date As datepicker:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        IconBackground: =RGBA(16, 124, 16, 1)
+        IsEditable: =true
+        PaddingLeft: =6
+        Size: =13
+        StartYear: =1999
+        Width: =NCEq1Serial.Width
+        X: =NCEq1Serial.X + NCEq1Serial.Width + 16
+        Y: =NCEq1Serial.Y
+        ZIndex: =18
+
+    NCEq1Due As datepicker:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        IconBackground: =RGBA(204, 152, 0, 1)
+        IsEditable: =true
+        PaddingLeft: =6
+        Size: =13
+        StartYear: =1999
+        Width: =NCEq1Serial.Width
+        X: =If(App.Width < 600, NCEq1Serial.X, NCEq1Date.X + NCEq1Date.Width + 12)
+        Y: =If(App.Width < 600, NCEq1Serial.Y + NCEq1Serial.Height + 30, NCEq1Serial.Y)
+        ZIndex: =19
+
+    NCEq1Cert As text:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Default: =""
+        Font: =Font.'Segoe UI'
+        Height: =44
+        HintText: ="Cert No."
+        PaddingLeft: =10
+        Size: =13
+        Width: =NCEq1Serial.Width
+        X: =If(App.Width < 600, NCEq1Date.X, NCEq1Due.X + NCEq1Due.Width + 12)
+        Y: =If(App.Width < 600, NCEq1Due.Y, NCEq1Serial.Y)
+        ZIndex: =20
+
+    NCEEq1SerialHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =11
+        Text: ="SERIAL"
+        Width: =NCEq1Serial.Width
+        X: =NCEq1Serial.X
+        Y: =NCEq1Serial.Y + NCEq1Serial.Height + 4
+        ZIndex: =21
+
+    NCEEq1DateHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =11
+        Text: ="CAL DATE"
+        Width: =NCEq1Date.Width
+        X: =NCEq1Date.X
+        Y: =NCEq1Date.Y + NCEq1Date.Height + 4
+        ZIndex: =22
+
+    NCEEq1DueHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =11
+        Text: ="CAL DUE"
+        Width: =NCEq1Due.Width
+        X: =NCEq1Due.X
+        Y: =NCEq1Due.Y + NCEq1Due.Height + 4
+        ZIndex: =23
+
+    NCEEq1CertHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =11
+        Text: ="CERT NO."
+        Width: =NCEq1Cert.Width
+        X: =NCEq1Cert.X
+        Y: =NCEq1Cert.Y + NCEq1Cert.Height + 4
+        ZIndex: =24
+
+    NCEEq2Card As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =If(App.Width < 600, 250, 170)
+        Text: =""
+        Width: =NCEContentBg.Width - 40
+        X: =NCEContentBg.X + 20
+        Y: =NCEEq1Card.Y + NCEEq1Card.Height + 16
+        ZIndex: =25
+
+    NCEEq2Title As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =26
+        Text: ="Calibration Equipment 2"
+        Width: =NCEEq2Card.Width - 40
+        X: =NCEEq2Card.X + 20
+        Y: =NCEEq2Card.Y + 16
+        ZIndex: =26
+
+    NCEq2Serial As text:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Default: =""
+        Font: =Font.'Segoe UI'
+        Height: =44
+        HintText: ="Serial No."
+        PaddingLeft: =10
+        Size: =13
+        Width: =If(App.Width < 600, (NCEEq2Card.Width - 56) / 2, (NCEEq2Card.Width - 92) / 4)
+        X: =NCEEq2Card.X + 20
+        Y: =NCEEq2Title.Y + NCEEq2Title.Height + 24
+        ZIndex: =27
+
+    NCEq2Date As datepicker:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        IconBackground: =RGBA(16, 124, 16, 1)
+        IsEditable: =true
+        PaddingLeft: =6
+        Size: =13
+        StartYear: =1999
+        Width: =NCEq2Serial.Width
+        X: =NCEq2Serial.X + NCEq2Serial.Width + 16
+        Y: =NCEq2Serial.Y
+        ZIndex: =28
+
+    NCEq2Due As datepicker:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        IconBackground: =RGBA(204, 152, 0, 1)
+        IsEditable: =true
+        PaddingLeft: =6
+        Size: =13
+        StartYear: =1999
+        Width: =NCEq2Serial.Width
+        X: =If(App.Width < 600, NCEq2Serial.X, NCEq2Date.X + NCEq2Date.Width + 12)
+        Y: =If(App.Width < 600, NCEq2Serial.Y + NCEq2Serial.Height + 30, NCEq2Serial.Y)
+        ZIndex: =29
+
+    NCEq2Cert As text:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Default: =""
+        Font: =Font.'Segoe UI'
+        Height: =44
+        HintText: ="Cert No."
+        PaddingLeft: =10
+        Size: =13
+        Width: =NCEq2Serial.Width
+        X: =If(App.Width < 600, NCEq2Date.X, NCEq2Due.X + NCEq2Due.Width + 12)
+        Y: =If(App.Width < 600, NCEq2Due.Y, NCEq2Serial.Y)
+        ZIndex: =30
+
+    NCEEq2SerialHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =11
+        Text: ="SERIAL"
+        Width: =NCEq2Serial.Width
+        X: =NCEq2Serial.X
+        Y: =NCEq2Serial.Y + NCEq2Serial.Height + 4
+        ZIndex: =31
+
+    NCEEq2DateHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =11
+        Text: ="CAL DATE"
+        Width: =NCEq2Date.Width
+        X: =NCEq2Date.X
+        Y: =NCEq2Date.Y + NCEq2Date.Height + 4
+        ZIndex: =32
+
+    NCEEq2DueHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =11
+        Text: ="CAL DUE"
+        Width: =NCEq2Due.Width
+        X: =NCEq2Due.X
+        Y: =NCEq2Due.Y + NCEq2Due.Height + 4
+        ZIndex: =33
+
+    NCEEq2CertHint As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =11
+        Text: ="CERT NO."
+        Width: =NCEq2Cert.Width
+        X: =NCEq2Cert.X
+        Y: =NCEq2Cert.Y + NCEq2Cert.Height + 4
+        ZIndex: =34
+
+    NCESubmitButton As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        DisabledFill: =RGBA(225, 223, 221, 1)
+        DisplayMode: =If(IsBlank(varCalAsset) || IsBlank(varCalDate), DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(16, 124, 16, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =54
+        HoverFill: =RGBA(14, 105, 14, 1)
+        OnSelect: |-
+            =Switch(
+                varCalType,
+                "5-Point",
+                    Patch(
+                        'Device Calibration Data List - Seal Sands',
+                        Defaults('Device Calibration Data List - Seal Sands'),
+                        {
+                            Asset: { Id: varCalAsset.ID, Value: varCalAsset.Title },
+                            Date: Today(),
+                            'Calibrated By': User().FullName,
+                            'Calibration Type': { Value: varCalType },
+                            'Error (% Span)': Float(varErrorPctSpan),
+                            'Error (Absolute)': Float(varAbsError),
+                            'LRV at cal.': Coalesce(varCalAsset.LRV, 0),
+                            'URV at cal.': Coalesce(varCalAsset.URV, 0),
+                            '0% Input': Coalesce(Value(NCIn0.Text), 0),
+                            '25% Input': Coalesce(Value(NCIn25.Text), 0),
+                            '50% Input': Coalesce(Value(NCIn50.Text), 0),
+                            '75% Input': Coalesce(Value(NCIn75.Text), 0),
+                            '100% Input': Coalesce(Value(NCIn100.Text), 0),
+                            '0% Rising Output (mA)': Coalesce(Value(NCRise0.Text), 0),
+                            '25% Rising Output (mA)': Coalesce(Value(NCRise25.Text), 0),
+                            '50% Rising Output (mA)': Coalesce(Value(NCRise50.Text), 0),
+                            '75% Rising Output (mA)': Coalesce(Value(NCRise75.Text), 0),
+                            '100% Rising Output (mA)': Coalesce(Value(NCRise100.Text), 0),
+                            '0% Falling Output (mA)': Coalesce(Value(NCFall0.Text), 0),
+                            '25% Falling Output (mA)': Coalesce(Value(NCFall25.Text), 0),
+                            '50% Falling Output (mA)': Coalesce(Value(NCFall50.Text), 0),
+                            '75% Falling Output (mA)': Coalesce(Value(NCFall75.Text), 0),
+                            '100% Falling Output (mA)': Coalesce(Value(NCFall100.Text), 0),
+                            Comments: NCEComments.Text,
+                            'Equipment Used': NCEEquipment.Text,
+                            'Calibration Equipment 1 Serial No.': NCEq1Serial.Text,
+                            'Calibration Equipment 1 Cal. Date': NCEq1Date.SelectedDate,
+                            'Calibration Equipment 1 Cal. Due': NCEq1Due.SelectedDate,
+                            'Calibration Equipment 1 Cert. No.': NCEq1Cert.Text,
+                            'Calibration Equipment 2 Serial No.': NCEq2Serial.Text,
+                            'Calibration Equipment 2 Cal. Date': NCEq2Date.SelectedDate,
+                            'Calibration Equipment 2 Cal. Due': NCEq2Due.SelectedDate,
+                            'Calibration Equipment 2 Cert. No.': NCEq2Cert.Text
+                        },
+                        If(IsBlank(varCalStandard), {}, { 'Calibration Standard Used': { Value: varCalStandard } }),
+                        If(IsBlank(varCalProcedure), {}, { 'Procedure Used': { Value: varCalProcedure } })
+                    ),
+                "2-Point",
+                    Patch(
+                        'Device Calibration Data List - Seal Sands',
+                        Defaults('Device Calibration Data List - Seal Sands'),
+                        {
+                            Asset: { Id: varCalAsset.ID, Value: varCalAsset.Title },
+                            Date: varCalDate,
+                            'Calibrated By': User().FullName,
+                            'Calibration Type': { Value: varCalType },
+                            'Error (Absolute)': Float(varAbsError),
+                            'LRV at cal.': Coalesce(varCalAsset.LRV, 0),
+                            'URV at cal.': Coalesce(varCalAsset.URV, 0),
+                            '2-Point Expected Point 1': Coalesce(Value(NC2P1Expected.Text), 0),
+                            '2-Point Measured Point 1': Coalesce(Value(NC2P1Measured.Text), 0),
+                            '2-Point Expected Point 2': Coalesce(Value(NC2P2Expected.Text), 0),
+                            '2-Point Measured Point 2': Coalesce(Value(NC2P2Measured.Text), 0),
+                            Comments: NCEComments.Text,
+                            'Equipment Used': NCEEquipment.Text,
+                            'Calibration Equipment 1 Serial No.': NCEq1Serial.Text,
+                            'Calibration Equipment 1 Cal. Date': NCEq1Date.SelectedDate,
+                            'Calibration Equipment 1 Cal. Due': NCEq1Due.SelectedDate,
+                            'Calibration Equipment 1 Cert. No.': NCEq1Cert.Text,
+                            'Calibration Equipment 2 Serial No.': NCEq2Serial.Text,
+                            'Calibration Equipment 2 Cal. Date': NCEq2Date.SelectedDate,
+                            'Calibration Equipment 2 Cal. Due': NCEq2Due.SelectedDate,
+                            'Calibration Equipment 2 Cert. No.': NCEq2Cert.Text
+                        },
+                        If(IsBlank(varCalStandard), {}, { 'Calibration Standard Used': { Value: varCalStandard } }),
+                        If(IsBlank(varCalProcedure), {}, { 'Procedure Used': { Value: varCalProcedure } })
+                    ),
+                "Zero Adjust",
+                    Patch(
+                        'Device Calibration Data List - Seal Sands',
+                        Defaults('Device Calibration Data List - Seal Sands'),
+                        {
+                            Asset: { Id: varCalAsset.ID, Value: varCalAsset.Title },
+                            Date: varCalDate,
+                            'Calibrated By': User().FullName,
+                            'Calibration Type': { Value: varCalType },
+                            'LRV at cal.': Coalesce(varCalAsset.LRV, 0),
+                            'URV at cal.': Coalesce(varCalAsset.URV, 0),
+                            'Zero Reading': Coalesce(Value(NCZeroReading.Text), 0),
+                            'Zero Adjust': 4 - Coalesce(Value(NCZeroReading.Text), 4),
+                            Comments: NCEComments.Text,
+                            'Equipment Used': NCEEquipment.Text,
+                            'Calibration Equipment 1 Serial No.': NCEq1Serial.Text,
+                            'Calibration Equipment 1 Cal. Date': NCEq1Date.SelectedDate,
+                            'Calibration Equipment 1 Cal. Due': NCEq1Due.SelectedDate,
+                            'Calibration Equipment 1 Cert. No.': NCEq1Cert.Text,
+                            'Calibration Equipment 2 Serial No.': NCEq2Serial.Text,
+                            'Calibration Equipment 2 Cal. Date': NCEq2Date.SelectedDate,
+                            'Calibration Equipment 2 Cal. Due': NCEq2Due.SelectedDate,
+                            'Calibration Equipment 2 Cert. No.': NCEq2Cert.Text
+                        },
+                        If(IsBlank(varCalStandard), {}, { 'Calibration Standard Used': { Value: varCalStandard } }),
+                        If(IsBlank(varCalProcedure), {}, { 'Procedure Used': { Value: varCalProcedure } })
+                    ),
+                "Span Adjust",
+                    Patch(
+                        'Device Calibration Data List - Seal Sands',
+                        Defaults('Device Calibration Data List - Seal Sands'),
+                        {
+                            Asset: { Id: varCalAsset.ID, Value: varCalAsset.Title },
+                            Date: varCalDate,
+                            'Calibrated By': User().FullName,
+                            'Calibration Type': { Value: varCalType },
+                            'LRV at cal.': Coalesce(varCalAsset.LRV, 0),
+                            'URV at cal.': Coalesce(varCalAsset.URV, 0),
+                            Comments: NCEComments.Text,
+                            'Equipment Used': NCEEquipment.Text,
+                            'Calibration Equipment 1 Serial No.': NCEq1Serial.Text,
+                            'Calibration Equipment 1 Cal. Date': NCEq1Date.SelectedDate,
+                            'Calibration Equipment 1 Cal. Due': NCEq1Due.SelectedDate,
+                            'Calibration Equipment 1 Cert. No.': NCEq1Cert.Text,
+                            'Calibration Equipment 2 Serial No.': NCEq2Serial.Text,
+                            'Calibration Equipment 2 Cal. Date': NCEq2Date.SelectedDate,
+                            'Calibration Equipment 2 Cal. Due': NCEq2Due.SelectedDate,
+                            'Calibration Equipment 2 Cert. No.': NCEq2Cert.Text
+                        },
+                        If(IsBlank(varCalStandard), {}, { 'Calibration Standard Used': { Value: varCalStandard } }),
+                        If(IsBlank(varCalProcedure), {}, { 'Procedure Used': { Value: varCalProcedure } }),
+                        If(IsBlank(varNewLRV), {}, { 'New LRV': Value(varNewLRV) }),
+                        If(IsBlank(varNewURV), {}, { 'New URV': Value(varNewURV) })
+                    )
+            );
+            Switch(
+                varCalType,
+                "5-Point",
+                    Patch(
+                        'Device Calibration List - Seal Sands',
+                        varCalAsset,
+                        {
+                            'Calibrated Upon': varCalDate,
+                            'Calibrated By': User().FullName,
+                            'Error (% Span)': Float(varErrorPctSpan)
+                        }
+                    ),
+                "2-Point",
+                    Patch(
+                        'Device Calibration List - Seal Sands',
+                        varCalAsset,
+                        {
+                            'Calibrated Upon': varCalDate,
+                            'Calibrated By': User().FullName
+                        }
+                    )
+            );
+            If(
+                varCalType = "Span Adjust" && Not IsBlank(varNewLRV),
+                Patch('Device Calibration List - Seal Sands', varCalAsset, { LRV: Value(varNewLRV) })
+            );
+            If(
+                varCalType = "Span Adjust" && Not IsBlank(varNewURV),
+                Patch('Device Calibration List - Seal Sands', varCalAsset, { URV: Value(varNewURV) })
+            );
+            Notify(
+                Switch(
+                    varCalType,
+                    "Span Adjust", "Span Adjust recorded for " & varCalAsset.Title & " — new range pushed to device.",
+                    "Zero Adjust", "Zero Adjust recorded for " & varCalAsset.Title & " — drift " & Text(4 - Coalesce(Value(NCZeroReading.Text), 4), "+0.0000; -0.0000; 0") & " mA logged.",
+                    "2-Point", "2-Point cal recorded for " & varCalAsset.Title & " — max deviation " & Text(varAbsError, "0.0000"),
+                    "5-Point recorded for " & varCalAsset.Title & " — Error: " & Text(varErrorPctSpan, "0.000") & "% span (" & Text(varAbsError, "0.0000") & " mA abs)"
+                ),
+                NotificationType.Success
+            );
+            Reset(NCAssetDropdown); Reset(NCDatePicker);
+            Reset(NCStandardDropdown); Reset(NCProcedureDropdown);
+            Reset(NCIn0); Reset(NCRise0); Reset(NCFall0);
+            Reset(NCIn25); Reset(NCRise25); Reset(NCFall25);
+            Reset(NCIn50); Reset(NCRise50); Reset(NCFall50);
+            Reset(NCIn75); Reset(NCRise75); Reset(NCFall75);
+            Reset(NCIn100); Reset(NCRise100); Reset(NCFall100);
+            Reset(NC2P1Expected); Reset(NC2P1Measured);
+            Reset(NC2P2Expected); Reset(NC2P2Measured);
+            Reset(NCZeroReading);
+            Reset(NCSpanNewLRV); Reset(NCSpanNewURV);
+            Reset(NCEComments); Reset(NCEEquipment);
+            Reset(NCEq1Serial); Reset(NCEq1Date); Reset(NCEq1Due); Reset(NCEq1Cert);
+            Reset(NCEq2Serial); Reset(NCEq2Date); Reset(NCEq2Due); Reset(NCEq2Cert);
+            Set(varCalType, "");
+            Set(varCalAsset, Blank());
+            Set(varCalStandard, "");
+            Set(varCalProcedure, "");
+            Set(varPrefilledAssetTitle, "");
+            Set(varErrorPctSpan, 0);
+            Set(varAbsError, 0);
+            Set(varNewLRV, "");
+            Set(varNewURV, "");
+            Set(varQRTag, "");
+            Navigate(Home, ScreenTransition.Fade)
+        PressedFill: =RGBA(10, 85, 10, 1)
+        Size: =15
+        Text: ="Submit Calibration"
+        Width: =(NCEContentBg.Width - 60) / 2
+        X: =NCEContentBg.X + 40 + (NCEContentBg.Width - 60) / 2
+        Y: =NCEEq2Card.Y + NCEEq2Card.Height + 20
+        ZIndex: =35
+
+    NCEPrevButton As button:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Color: =RGBA(50, 49, 48, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =54
+        HoverFill: =RGBA(247, 247, 246, 1)
+        OnSelect: =Back()
+        PressedFill: =RGBA(237, 237, 236, 1)
+        Size: =15
+        Text: ="<  Previous"
+        Width: =(NCEContentBg.Width - 60) / 2
+        X: =NCEContentBg.X + 20
+        Y: =NCESubmitButton.Y
+        ZIndex: =36
+

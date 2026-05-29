@@ -1,0 +1,211 @@
+"Home As screen.'autoLayout_HeaderFooter_ver1.0'":
+    BackgroundImage: =Picture1
+    Fill: =RGBA(243, 242, 241, 1)
+    ImagePosition: =ImagePosition.Fill
+
+    HeaderBar As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(0, 90, 158, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =140
+        PaddingLeft: =40
+        Size: =28
+        Text: ="Calibration Database"
+        Width: =Parent.Width
+        ZIndex: =1
+
+    HeaderSubtitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 1)
+        Font: =Font.'Segoe UI'
+        Height: =30
+        PaddingLeft: =40
+        Size: =13
+        Text: ="Seal Sands instrument calibration management"
+        Width: =Parent.Width - 80
+        Y: =HeaderBar.Y + HeaderBar.Height - 45
+        ZIndex: =2
+
+    TileBrowseCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =Min(Parent.Height - HeaderBar.Height - 120, 300)
+        Text: =""
+        Width: =If(App.Width < 760, Parent.Width - 40, Min((Parent.Width - 80) / 2, 360))
+        X: =If(App.Width < 760, 20, Max(40, (Parent.Width - 40 - Self.Width * 2) / 2))
+        Y: =184
+        ZIndex: =3
+
+    TileBrowseTitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(0, 90, 158, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =58
+        Size: =22
+        Text: ="Browse Devices"
+        Width: =TileBrowseCard.Width - 40
+        X: =TileBrowseCard.X + 20
+        Y: =TileBrowseCard.Y + 40
+        ZIndex: =4
+
+    TileBrowseBody As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =82
+        Size: =13
+        Text: ="View existing devices, filter by tag number, description or location, and inspect specialist fields."
+        Width: =TileBrowseCard.Width - 40
+        X: =TileBrowseCard.X + 20
+        Y: =TileBrowseTitle.Y + TileBrowseTitle.Height + 8
+        ZIndex: =5
+
+    TileBrowseCTA As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(0, 120, 212, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Text: ="Open browser  >"
+        Width: =TileBrowseCard.Width - 40
+        X: =TileBrowseCard.X + 20
+        Y: =TileBrowseCard.Y + TileBrowseCard.Height - 50
+        ZIndex: =6
+
+    TileBrowseClick As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 0)
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        Height: =TileBrowseCard.Height
+        HoverFill: =RGBA(0, 120, 212, 0.04)
+        OnSelect: |-
+            =Set(varPrefilledAssetTitle, "");
+            Navigate(DeviceBrowse, ScreenTransition.Cover)
+        PressedFill: =RGBA(0, 120, 212, 0.08)
+        Size: =1
+        Text: =""
+        Width: =TileBrowseCard.Width
+        X: =TileBrowseCard.X
+        Y: =TileBrowseCard.Y
+        ZIndex: =7
+
+    TileLogCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =TileBrowseCard.Height
+        Text: =""
+        Width: =TileBrowseCard.Width
+        X: =If(App.Width < 760, TileBrowseCard.X, TileBrowseCard.X + TileBrowseCard.Width + 40)
+        Y: =If(App.Width < 760, TileBrowseCard.Y + TileBrowseCard.Height + 20, TileBrowseCard.Y)
+        ZIndex: =8
+
+    TileLogAccent As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(16, 124, 16, 1)
+        Height: =4
+        Text: =""
+        Width: =TileLogCard.Width
+        X: =TileLogCard.X
+        Y: =TileLogCard.Y
+        ZIndex: =9
+
+    TileLogTitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(16, 124, 16, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =69
+        Size: =22
+        Text: ="Log Calibration"
+        Width: =TileLogCard.Width - 40
+        X: =TileLogCard.X + 20
+        Y: =TileLogCard.Y + 40
+        ZIndex: =10
+
+    TileLogBody As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =85
+        Size: =13
+        Text: ="Record a new Zero or Span adjust, 5-point or 2-point calibration in a guided four-step process."
+        Width: =TileLogCard.Width - 40
+        X: =TileLogCard.X + 20
+        Y: =TileLogTitle.Y + TileLogTitle.Height + 4
+        ZIndex: =11
+
+    TileLogCTA As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(16, 124, 16, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Text: ="Start calibration  >"
+        Width: =TileLogCard.Width - 40
+        X: =TileLogCard.X + 20
+        Y: =TileLogCard.Y + TileLogCard.Height - 50
+        ZIndex: =12
+
+    TileLogClick As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 0)
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        Height: =TileLogCard.Height
+        HoverFill: =RGBA(16, 124, 16, 0.04)
+        OnSelect: |-
+            =Set(varSelectedDevice, Blank());
+            Set(varPrefilledAssetTitle, "");
+            Set(varCalType, "");
+            Set(varCalStep, 1);
+            Navigate(NewCal_Type, ScreenTransition.Cover)
+        PaddingRight: =2
+        PressedFill: =RGBA(16, 124, 16, 0.08)
+        Size: =1
+        Text: =""
+        Width: =TileLogCard.Width
+        X: =TileLogCard.X
+        Y: =TileLogCard.Y
+        ZIndex: =13
+
+    FooterHint As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =30
+        Size: =11
+        Text: ="Maintenance Seal Sands Instrument Calibration"
+        Width: =Parent.Width
+        Y: =Parent.Height - 40
+        ZIndex: =14
+
+    TileBrowseAccent As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(16, 110, 190, 1)
+        Height: =4
+        Text: =""
+        Width: =TileBrowseCard.Width
+        X: =TileBrowseCard.X
+        Y: =TileBrowseCard.Y
+        ZIndex: =15
+

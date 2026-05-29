@@ -1,0 +1,316 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  NewCal_SpanAdjust:
+    Properties:
+      Fill: =RGBA(243, 242, 241, 1)
+      LoadingSpinnerColor: =RGBA(0, 51, 102, 1)
+      OnVisible: =Set(varCalStep, 3)
+    Children:
+      - NCXHeaderBar:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(0, 120, 212, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =80
+            PaddingLeft: =100
+            Size: =20
+            Text: ="New Calibration — Span Adjust"
+            Width: =Parent.Width
+      - NCXBackButton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(255, 255, 255, 0.4)
+            BorderThickness: =1
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Fill, 90%)
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: =Font.'Segoe UI'
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(255, 255, 255, 0.1)
+            OnSelect: =Back()
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(255, 255, 255, 0.2)
+            Size: =13
+            Text: ="<  Back"
+            Width: =80
+            X: =16
+            Y: =20
+      - NCXStepText:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =30
+            PaddingRight: =20
+            Text: =If(IsBlank(varCalAsset), "Step 3 of 4 — Span Adjust", "Step 3 of 4 — " & varCalAsset.Title)
+            Width: =500
+            X: =Parent.Width - Self.Width
+            Y: =25
+      - NCXStep1Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(0, 120, 212, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =Min((Parent.Width - 80) / 4, 180)
+            X: =(Parent.Width - Self.Width * 4 - 24) / 2
+            Y: =NCXHeaderBar.Y + NCXHeaderBar.Height + 12
+      - NCXStep2Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(0, 120, 212, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =NCXStep1Dot.Width
+            X: =NCXStep1Dot.X + NCXStep1Dot.Width + 8
+            Y: =NCXStep1Dot.Y
+      - NCXStep3Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(0, 120, 212, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =NCXStep1Dot.Width
+            X: =NCXStep2Dot.X + NCXStep2Dot.Width + 8
+            Y: =NCXStep1Dot.Y
+      - NCXStep4Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(225, 223, 221, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =NCXStep1Dot.Width
+            X: =NCXStep3Dot.X + NCXStep3Dot.Width + 8
+            Y: =NCXStep1Dot.Y
+      - NCXContentBg:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Open Sans'
+            Height: =Parent.Height - NCXHeaderBar.Height - 40
+            Size: =14
+            Text: =""
+            Width: =Min(Parent.Width, 700)
+            X: =(Parent.Width - Self.Width) / 2
+            Y: =NCXHeaderBar.Y + NCXHeaderBar.Height + 40
+      - NCXRangeCard:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans'
+            Height: =280
+            Size: =14
+            Text: =""
+            Width: =NCXContentBg.Width - 40
+            X: =NCXContentBg.X + 20
+            Y: =NCXContentBg.Y
+      - NCXRangeTitle:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =30
+            Size: =16
+            Text: ="New Range"
+            Width: =NCXRangeCard.Width - 40
+            X: =NCXRangeCard.X + 20
+            Y: =NCXRangeCard.Y + 16
+      - NCXRangeHint:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =60
+            Size: =12
+            Text: |-
+              =If(
+                  IsBlank(varCalAsset),
+                  "Enter the new LRV and URV for the device. Leave either blank to keep the existing value.",
+                  "Current range on " & varCalAsset.Title & ": LRV " & Coalesce(Text(varCalAsset.LRV), "—") & " / URV " & Coalesce(Text(varCalAsset.URV), "—") & ". Enter new values to push to the device. Leave either blank to keep its existing value."
+              )
+            Width: =NCXRangeCard.Width - 40
+            X: =NCXRangeCard.X + 20
+            Y: =NCXRangeTitle.Y + NCXRangeTitle.Height + 2
+      - NCXLrvLabel:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =20
+            Size: =11
+            Text: ="NEW LRV"
+            Width: =(NCXRangeCard.Width - 60) / 2
+            X: =NCXRangeCard.X + 20
+            Y: =NCXRangeHint.Y + NCXRangeHint.Height + 10
+      - NCSpanNewLRV:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =54
+            HintText: ="leave blank if unchanged"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            Size: =16
+            Width: =(NCXRangeCard.Width - 60) / 2
+            X: =NCXRangeCard.X + 20
+            Y: =NCXLrvLabel.Y + NCXLrvLabel.Height + 4
+      - NCXUrvLabel:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =20
+            Size: =11
+            Text: ="NEW URV"
+            Width: =(NCXRangeCard.Width - 60) / 2
+            X: =NCXRangeCard.X + 40 + (NCXRangeCard.Width - 60) / 2
+            Y: =NCXLrvLabel.Y
+      - NCSpanNewURV:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =54
+            HintText: ="leave blank if unchanged"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            Size: =16
+            Width: =(NCXRangeCard.Width - 60) / 2
+            X: =NCXUrvLabel.X
+            Y: =NCSpanNewLRV.Y
+      - NCXNextButton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Fill, 90%)
+            DisabledFill: =RGBA(225, 223, 221, 1)
+            DisplayMode: =If(IsBlank(NCSpanNewLRV.Text) && IsBlank(NCSpanNewURV.Text), DisplayMode.Disabled, DisplayMode.Edit)
+            Fill: =RGBA(0, 120, 212, 1)
+            Font: =Font.'Segoe UI'
+            Height: =54
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(16, 110, 190, 1)
+            OnSelect: |-
+              =Set(varNewLRV, NCSpanNewLRV.Text);
+              Set(varNewURV, NCSpanNewURV.Text);
+              Set(varAbsError, 0);
+              Set(varErrorPctSpan, 0);
+              Navigate(NewCal_Equipment, ScreenTransition.None)
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(0, 90, 158, 1)
+            Text: |-
+              ="Next: Equipment  >"
+            Width: =(NCXContentBg.Width - 60) / 2
+            X: =NCXContentBg.X + 40 + (NCXContentBg.Width - 60) / 2
+            Y: =NCXRangeCard.Y + NCXRangeCard.Height + 20
+      - NCXPrevButton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Fill, 90%)
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Segoe UI'
+            Height: =54
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(247, 247, 246, 1)
+            OnSelect: =Back()
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(237, 237, 236, 1)
+            Text: ="<  Previous"
+            Width: =(NCXContentBg.Width - 60) / 2
+            X: =NCXContentBg.X + 20
+            Y: =NCXNextButton.Y

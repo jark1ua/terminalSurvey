@@ -1,0 +1,36 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+App:
+  Properties:
+    OnStart: |-
+      =Set(varSelectedDevice, Blank());
+      Set(varPrefilledAssetTitle, "");
+      Set(varCalStep, 1);
+      Set(varCalType, "");
+      Set(varCalAsset, Blank());
+      Set(varCalDate, Today());
+      Set(varCalStandard, "");
+      Set(varCalProcedure, "");
+      Set(varErrorPctSpan, 0);
+      Set(varAbsError, 0);
+      Set(varNewLRV, "");
+      Set(varNewURV, "");
+      Set(varQRTag, Coalesce(Param("Tag"), Param("tag"), Param("Asset"), Param("asset"), ""));
+      If(
+          Not IsBlank(varQRTag),
+          Set(
+              varSelectedDevice,
+              LookUp(
+                  'Device Calibration List - Seal Sands',
+                  Title = varQRTag
+              )
+          )
+      )
+    StartScreen: =If(Not IsBlank(varQRTag) && Not IsBlank(varSelectedDevice), DeviceBrowse, Home)
+    Theme: =PowerAppsTheme

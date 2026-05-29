@@ -1,0 +1,35 @@
+{
+  "5c69566e-1675-48fa-b739-f89d43d925ee": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://static.powerapps.com/resource/ppcr/releases/v1.0.1809/1.0.1809.4723/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://navigatorterminals.sharepoint.com/sites/DMS_Maintenance": {
+        "dataSources": {
+          "Device Calibration Data List - Seal Sands": {
+            "tableName": "b4ba12d2-36d9-4f60-9505-07de8750cfb7"
+          },
+          "Device Calibration List - Seal Sands": {
+            "tableName": "0e5af241-fdee-4d10-be4f-8debe1f07b43"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Device Calibration Data List - Seal Sands",
+      "Device Calibration List - Seal Sands"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "5c69566e-1675-48fa-b739-f89d43d925ee"
+  }
+}

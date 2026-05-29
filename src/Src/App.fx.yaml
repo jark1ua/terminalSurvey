@@ -1,0 +1,36 @@
+App As appinfo:
+    BackEnabled: =true
+    OnStart: |-
+        =Set(varSelectedDevice, Blank());
+        Set(varPrefilledAssetTitle, "");
+        Set(varCalStep, 1);
+        Set(varCalType, "");
+        Set(varCalAsset, Blank());
+        Set(varCalDate, Today());
+        Set(varCalStandard, "");
+        Set(varCalProcedure, "");
+        Set(varErrorPctSpan, 0);
+        Set(varAbsError, 0);
+        Set(varNewLRV, "");
+        Set(varNewURV, "");
+        Set(varQRTag, Coalesce(Param("Tag"), Param("tag"), Param("Asset"), Param("asset"), ""));
+        If(
+            Not IsBlank(varQRTag),
+            Set(
+                varSelectedDevice,
+                LookUp(
+                    'Device Calibration List - Seal Sands',
+                    Title = varQRTag
+                )
+            )
+        )
+    StartScreen: =If(Not IsBlank(varQRTag) && Not IsBlank(varSelectedDevice), DeviceBrowse, Home)
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

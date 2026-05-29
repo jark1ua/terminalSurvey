@@ -1,0 +1,425 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  NewCal_Setup:
+    Properties:
+      Fill: =RGBA(243, 242, 241, 1)
+      LoadingSpinnerColor: =RGBA(0, 51, 102, 1)
+      OnVisible: |-
+        =Set(varCalStep, 2);
+        If(
+            Not IsBlank(varPrefilledAssetTitle) && IsBlank(varCalAsset),
+            Set(
+                varCalAsset,
+                LookUp('Device Calibration List - Seal Sands', Title = varPrefilledAssetTitle)
+            )
+        )
+    Children:
+      - NCSHeaderBar:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(16, 124, 16, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =80
+            PaddingLeft: =100
+            Size: =20
+            Text: ="New Calibration"
+            Width: =Parent.Width
+      - NCSBackButton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(255, 255, 255, 0.4)
+            BorderThickness: =1
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Fill, 90%)
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: =Font.'Segoe UI'
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(255, 255, 255, 0.1)
+            OnSelect: =Back()
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(255, 255, 255, 0.2)
+            Size: =13
+            Text: ="<  Back"
+            Width: =80
+            X: =16
+            Y: =20
+      - NCSStepText:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =30
+            PaddingRight: =20
+            Text: =If(IsBlank(varCalType), "Step 2 of 4 — Setup", "Step 2 of 4 — " & varCalType & " — Setup")
+            Width: =440
+            X: =Parent.Width - Self.Width
+            Y: =25
+      - NCSStep1Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(16, 124, 16, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =Min((Parent.Width - 80) / 4, 180)
+            X: =(Parent.Width - Self.Width * 4 - 24) / 2
+            Y: =NCSHeaderBar.Y + NCSHeaderBar.Height + 12
+      - NCSStep2Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(16, 124, 16, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =NCSStep1Dot.Width
+            X: =NCSStep1Dot.X + NCSStep1Dot.Width + 8
+            Y: =NCSStep1Dot.Y
+      - NCSStep3Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(225, 223, 221, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =NCSStep1Dot.Width
+            X: =NCSStep2Dot.X + NCSStep2Dot.Width + 8
+            Y: =NCSStep1Dot.Y
+      - NCSStep4Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(225, 223, 221, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =NCSStep1Dot.Width
+            X: =NCSStep3Dot.X + NCSStep3Dot.Width + 8
+            Y: =NCSStep1Dot.Y
+      - NCSContentBg:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Open Sans'
+            Height: =Parent.Height - NCSHeaderBar.Height - 40
+            Size: =14
+            Text: =""
+            Width: =Min(Parent.Width, 760)
+            X: =(Parent.Width - Self.Width) / 2
+            Y: =NCSHeaderBar.Y + NCSHeaderBar.Height + 40
+      - NCSAssetCard:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans'
+            Height: =270
+            Size: =14
+            Text: =""
+            Width: =NCSContentBg.Width - 40
+            X: =NCSContentBg.X + 20
+            Y: =NCSContentBg.Y
+      - NCSAssetTitle:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =30
+            Size: =16
+            Text: ="Asset & Date"
+            Width: =NCSAssetCard.Width - 40
+            X: =NCSAssetCard.X + 20
+            Y: =NCSAssetCard.Y + 16
+      - NCSAssetLabel:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =20
+            Size: =11
+            Text: ="ASSET (TAG NUMBER)"
+            Width: =(NCSAssetCard.Width - 60) / 2
+            X: =NCSAssetCard.X + 20
+            Y: =NCSAssetTitle.Y + NCSAssetTitle.Height + 14
+      - NCAssetDropdown:
+          Control: Classic/DropDown@2.3.1
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronDisabledBackground: =RGBA(215, 210, 204, 1)
+            ChevronDisabledFill: =RGBA(235, 233, 229, 1)
+            ChevronFill: =RGBA(50, 49, 48, 1)
+            ChevronHoverBackground: =ColorFade(Self.ChevronBackground, 20%)
+            ChevronHoverFill: =Self.ChevronFill
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =varPrefilledAssetTitle
+            DisabledBorderColor: =RGBA(186, 186, 186, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            DisabledFill: =RGBA(242, 242, 242, 1)
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(186, 186, 186, 1)
+            Items: |-
+              =Distinct(
+                  SortByColumns('Device Calibration List - Seal Sands', "Title"),
+                  Title
+              )
+            Items.Value: =Value
+            OnChange: |-
+              =Set(
+                  varCalAsset,
+                  LookUp(
+                      'Device Calibration List - Seal Sands',
+                      Title = NCAssetDropdown.Selected.Value
+                  )
+              )
+            PaddingLeft: =12
+            PressedColor: =Self.Color
+            PressedFill: =ColorFade(Self.SelectionFill, -30%)
+            SelectionColor: =RGBA(255, 255, 255, 1)
+            SelectionFill: =RGBA(0, 176, 240, 1)
+            Size: =14
+            Width: =(NCSAssetCard.Width - 60) / 2
+            X: =NCSAssetCard.X + 20
+            Y: =NCSAssetLabel.Y + NCSAssetLabel.Height + 4
+      - NCSDateLabel:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =20
+            Size: =11
+            Text: ="CALIBRATION DATE"
+            Width: =(NCSAssetCard.Width - 60) / 2
+            X: =NCSAssetCard.X + 40 + (NCSAssetCard.Width - 60) / 2
+            Y: =NCSAssetLabel.Y
+      - NCDatePicker:
+          Control: Classic/DatePicker@2.6.0
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(56, 56, 56, 1)
+            DisabledColor: =RGBA(70, 68, 64, 1)
+            DisabledFill: =Self.Fill
+            Font: =Font.'Segoe UI'
+            IconBackground: =RGBA(16, 124, 16, 1)
+            IconFill: =RGBA(255, 255, 255, 1)
+            IsEditable: =true
+            OnChange: =Set(varCalDate, NCDatePicker.SelectedDate)
+            PaddingLeft: =8
+            StartYear: =1999
+            Width: =(NCSAssetCard.Width - 60) / 2
+            X: =NCSDateLabel.X
+            Y: =NCSAssetLabel.Y + NCSAssetLabel.Height + 4
+      - NCSStandardLabel:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =20
+            Size: =11
+            Text: ="CALIBRATION STANDARD"
+            Width: =(NCSAssetCard.Width - 60) / 2
+            X: =NCSAssetCard.X + 20
+            Y: =NCAssetDropdown.Y + NCAssetDropdown.Height + 14
+      - NCStandardDropdown:
+          Control: Classic/DropDown@2.3.1
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronDisabledBackground: =RGBA(215, 210, 204, 1)
+            ChevronDisabledFill: =RGBA(235, 233, 229, 1)
+            ChevronFill: =RGBA(50, 49, 48, 1)
+            ChevronHoverBackground: =ColorFade(Self.ChevronBackground, 20%)
+            ChevronHoverFill: =Self.ChevronFill
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =varCalStandard
+            DisabledBorderColor: =RGBA(186, 186, 186, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            DisabledFill: =RGBA(242, 242, 242, 1)
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(186, 186, 186, 1)
+            Items: |-
+              =Distinct(
+                  'Device Calibration List - Seal Sands',
+                  'Calibration Standard'.Value
+              )
+            Items.Value: =Value
+            OnChange: =Set(varCalStandard, If(IsBlank(NCStandardDropdown.Selected), "", NCStandardDropdown.Selected.Value))
+            PaddingLeft: =12
+            PressedColor: =Self.Color
+            PressedFill: =ColorFade(Self.SelectionFill, -30%)
+            SelectionColor: =RGBA(255, 255, 255, 1)
+            SelectionFill: =RGBA(0, 176, 240, 1)
+            Size: =14
+            Width: =(NCSAssetCard.Width - 60) / 2
+            X: =NCSAssetCard.X + 20
+            Y: =NCSStandardLabel.Y + NCSStandardLabel.Height + 4
+      - NCSProcedureLabel:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =20
+            Size: =11
+            Text: ="CALIBRATION PROCEDURE"
+            Width: =(NCSAssetCard.Width - 60) / 2
+            X: =NCSDateLabel.X
+            Y: =NCSStandardLabel.Y
+      - NCProcedureDropdown:
+          Control: Classic/DropDown@2.3.1
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronDisabledBackground: =RGBA(215, 210, 204, 1)
+            ChevronDisabledFill: =RGBA(235, 233, 229, 1)
+            ChevronFill: =RGBA(50, 49, 48, 1)
+            ChevronHoverBackground: =ColorFade(Self.ChevronBackground, 20%)
+            ChevronHoverFill: =Self.ChevronFill
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =varCalProcedure
+            DisabledBorderColor: =RGBA(186, 186, 186, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            DisabledFill: =RGBA(242, 242, 242, 1)
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(186, 186, 186, 1)
+            Items: |-
+              =Distinct(
+                  'Device Calibration List - Seal Sands',
+                  'Calibration Procedure'.Value
+              )
+            Items.Value: =Value
+            OnChange: =Set(varCalProcedure, If(IsBlank(NCProcedureDropdown.Selected), "", NCProcedureDropdown.Selected.Value))
+            PaddingLeft: =12
+            PressedColor: =Self.Color
+            PressedFill: =ColorFade(Self.SelectionFill, -30%)
+            SelectionColor: =RGBA(255, 255, 255, 1)
+            SelectionFill: =RGBA(0, 176, 240, 1)
+            Size: =14
+            Width: =(NCSAssetCard.Width - 60) / 2
+            X: =NCSDateLabel.X
+            Y: =NCSStandardLabel.Y + NCSStandardLabel.Height + 4
+      - NCSNextButton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Fill, 90%)
+            DisabledFill: =RGBA(225, 223, 221, 1)
+            DisplayMode: =If(IsBlank(varCalAsset) || IsBlank(NCDatePicker.SelectedDate), DisplayMode.Disabled, DisplayMode.Edit)
+            Fill: =RGBA(16, 124, 16, 1)
+            Font: =Font.'Segoe UI'
+            Height: =54
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(14, 105, 14, 1)
+            OnSelect: |-
+              =Set(varCalDate, NCDatePicker.SelectedDate);
+              Set(varCalStandard, If(IsBlank(NCStandardDropdown.Selected), "", NCStandardDropdown.Selected.Value));
+              Set(varCalProcedure, If(IsBlank(NCProcedureDropdown.Selected), "", NCProcedureDropdown.Selected.Value));
+              Switch(
+                  varCalType,
+                  "5-Point", Navigate(NewCal_Measurements, ScreenTransition.None),
+                  "2-Point", Navigate(NewCal_2Point, ScreenTransition.None),
+                  "Zero Adjust", Navigate(NewCal_ZeroAdjust, ScreenTransition.None),
+                  "Span Adjust", Navigate(NewCal_SpanAdjust, ScreenTransition.None),
+                  Navigate(NewCal_Measurements, ScreenTransition.None)
+              )
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(10, 85, 10, 1)
+            Text: |-
+              =If(IsBlank(varCalType), "Next  >", "Next: " & varCalType & "  >")
+            Width: =(NCSContentBg.Width - 60) / 2
+            X: =NCSContentBg.X + 40 + (NCSContentBg.Width - 60) / 2
+            Y: =NCSAssetCard.Y + NCSAssetCard.Height + 24
+      - NCSPrevButton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Fill, 90%)
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Segoe UI'
+            Height: =54
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(247, 247, 246, 1)
+            OnSelect: =Back()
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(237, 237, 236, 1)
+            Text: ="<  Previous"
+            Width: =(NCSContentBg.Width - 60) / 2
+            X: =NCSContentBg.X + 20
+            Y: =NCSNextButton.Y

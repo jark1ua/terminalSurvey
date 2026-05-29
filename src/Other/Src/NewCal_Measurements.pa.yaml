@@ -1,0 +1,841 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  NewCal_Measurements:
+    Properties:
+      Fill: =RGBA(243, 242, 241, 1)
+      LoadingSpinnerColor: =RGBA(0, 51, 102, 1)
+      OnVisible: =Set(varCalStep, 3)
+    Children:
+      - NCMHeaderBar:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(16, 124, 16, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =80
+            PaddingLeft: =100
+            Size: =20
+            Text: ="New Calibration"
+            Width: =Parent.Width
+      - NCMBackButton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(255, 255, 255, 0.4)
+            BorderThickness: =1
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Fill, 90%)
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: =Font.'Segoe UI'
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(255, 255, 255, 0.1)
+            OnSelect: =Back()
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(255, 255, 255, 0.2)
+            Size: =13
+            Text: ="<  Back"
+            Width: =80
+            X: =16
+            Y: =20
+      - NCMStepText:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =30
+            PaddingRight: =20
+            Text: =If(IsBlank(varCalAsset), "Step 3 of 4 — 5-Point Measurements", "Step 3 of 4 — 5-Point — " & varCalAsset.Title)
+            Width: =500
+            X: =Parent.Width - Self.Width
+            Y: =25
+      - NCMStep1Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(16, 124, 16, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =Min((Parent.Width - 80) / 4, 180)
+            X: =(Parent.Width - Self.Width * 4 - 24) / 2
+            Y: =NCMHeaderBar.Y + NCMHeaderBar.Height + 12
+      - NCMStep2Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(16, 124, 16, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =NCMStep1Dot.Width
+            X: =NCMStep1Dot.X + NCMStep1Dot.Width + 8
+            Y: =NCMStep1Dot.Y
+      - NCMStep3Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(16, 124, 16, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =NCMStep1Dot.Width
+            X: =NCMStep2Dot.X + NCMStep2Dot.Width + 8
+            Y: =NCMStep1Dot.Y
+      - NCMStep4Dot:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(225, 223, 221, 1)
+            Font: =Font.'Open Sans'
+            Height: =4
+            Size: =14
+            Text: =""
+            Width: =NCMStep1Dot.Width
+            X: =NCMStep3Dot.X + NCMStep3Dot.Width + 8
+            Y: =NCMStep1Dot.Y
+      - NCMContentBg:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Open Sans'
+            Height: =Parent.Height - NCMHeaderBar.Height - 40
+            Size: =14
+            Text: =""
+            Width: =Min(Parent.Width, 760)
+            X: =(Parent.Width - Self.Width) / 2
+            Y: =NCMHeaderBar.Y + NCMHeaderBar.Height + 40
+      - NCMGridCard:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans'
+            Height: =480
+            Size: =14
+            Text: =""
+            Width: =NCMContentBg.Width - 40
+            X: =NCMContentBg.X + 20
+            Y: =NCMContentBg.Y
+      - NCMGridTitle:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =30
+            Size: =16
+            Text: ="Five-Point Measurements"
+            Width: =NCMGridCard.Width - 40
+            X: =NCMGridCard.X + 20
+            Y: =NCMGridCard.Y + 16
+      - NCMGridHint:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =32
+            Size: =12
+            Text: |-
+              ="Expected output (mA): 4 at 0%, 8 at 25%, 12 at 50%, 16 at 75%, 20 at 100%"
+            Width: =520
+            X: =NCMGridCard.X + 20
+            Y: =NCMGridTitle.Y + NCMGridTitle.Height + 2
+      - NCMColHdrPct:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(243, 242, 241, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =34
+            Size: =11
+            Text: =""
+            Width: =80
+            X: =NCMGridCard.X + 20
+            Y: =NCMGridHint.Y + NCMGridHint.Height + 12
+      - NCMColHdrInput:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(243, 242, 241, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =34
+            Size: =11
+            Text: ="INPUT"
+            Width: =(NCMGridCard.Width - 40 - 80 - 32) / 3
+            X: =NCMColHdrPct.X + NCMColHdrPct.Width + 16
+            Y: =NCMColHdrPct.Y
+      - NCMColHdrRising:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(243, 242, 241, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =34
+            Size: =11
+            Text: ="RISING (mA)"
+            Width: =NCMColHdrInput.Width
+            X: =NCMColHdrInput.X + NCMColHdrInput.Width + 8
+            Y: =NCMColHdrInput.Y
+      - NCMColHdrFalling:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(243, 242, 241, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =34
+            Size: =11
+            Text: ="FALLING (mA)"
+            Width: =NCMColHdrInput.Width
+            X: =NCMColHdrRising.X + NCMColHdrRising.Width + 8
+            Y: =NCMColHdrInput.Y
+      - NCMRow0Label:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =46
+            Text: ="0%"
+            Width: =80
+            X: =NCMColHdrPct.X
+            Y: =NCMColHdrPct.Y + NCMColHdrPct.Height + 8
+      - NCIn0:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="0"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrInput.Width
+            X: =NCMColHdrInput.X
+            Y: =NCMRow0Label.Y
+      - NCRise0:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="4"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrRising.Width
+            X: =NCMColHdrRising.X
+            Y: =NCMRow0Label.Y
+      - NCFall0:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="4"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrFalling.Width
+            X: =NCMColHdrFalling.X
+            Y: =NCMRow0Label.Y
+      - NCMRow25Label:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =46
+            Text: ="25%"
+            Width: =80
+            X: =NCMColHdrPct.X
+            Y: =NCMRow0Label.Y + NCMRow0Label.Height + 6
+      - NCIn25:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="25"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrInput.Width
+            X: =NCMColHdrInput.X
+            Y: =NCMRow25Label.Y
+      - NCRise25:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="8"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrRising.Width
+            X: =NCMColHdrRising.X
+            Y: =NCMRow25Label.Y
+      - NCFall25:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="8"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrFalling.Width
+            X: =NCMColHdrFalling.X
+            Y: =NCMRow25Label.Y
+      - NCMRow50Label:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =46
+            Text: ="50%"
+            Width: =80
+            X: =NCMColHdrPct.X
+            Y: =NCMRow25Label.Y + NCMRow25Label.Height + 6
+      - NCIn50:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="50"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrInput.Width
+            X: =NCMColHdrInput.X
+            Y: =NCMRow50Label.Y
+      - NCRise50:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="12"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrRising.Width
+            X: =NCMColHdrRising.X
+            Y: =NCMRow50Label.Y
+      - NCFall50:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="12"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrFalling.Width
+            X: =NCMColHdrFalling.X
+            Y: =NCMRow50Label.Y
+      - NCMRow75Label:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =46
+            Text: ="75%"
+            Width: =80
+            X: =NCMColHdrPct.X
+            Y: =NCMRow50Label.Y + NCMRow50Label.Height + 6
+      - NCIn75:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="75"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrInput.Width
+            X: =NCMColHdrInput.X
+            Y: =NCMRow75Label.Y
+      - NCRise75:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="16"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrRising.Width
+            X: =NCMColHdrRising.X
+            Y: =NCMRow75Label.Y
+      - NCFall75:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="16"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrFalling.Width
+            X: =NCMColHdrFalling.X
+            Y: =NCMRow75Label.Y
+      - NCMRow100Label:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =46
+            Text: ="100%"
+            Width: =80
+            X: =NCMColHdrPct.X
+            Y: =NCMRow75Label.Y + NCMRow75Label.Height + 6
+      - NCIn100:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="100"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrInput.Width
+            X: =NCMColHdrInput.X
+            Y: =NCMRow100Label.Y
+      - NCRise100:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="20"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrRising.Width
+            X: =NCMColHdrRising.X
+            Y: =NCMRow100Label.Y
+      - NCFall100:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            Default: =""
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+            DisabledColor: =ColorFade(Self.Color, 40%)
+            DisabledFill: =Self.Fill
+            FocusedBorderThickness: =3
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =46
+            HintText: ="20"
+            HoverBorderColor: =Self.Color
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =10
+            Size: =14
+            Width: =NCMColHdrFalling.Width
+            X: =NCMColHdrFalling.X
+            Y: =NCMRow100Label.Y
+      - NCMErrorCard:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans'
+            Height: =110
+            Size: =14
+            Text: =""
+            Width: =NCMContentBg.Width - 40
+            X: =NCMContentBg.X + 20
+            Y: =NCMGridCard.Y + NCMGridCard.Height + 20
+      - NCMErrorTitle:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(96, 94, 92, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            Height: =22
+            Size: =11
+            Text: ="COMPUTED ERROR"
+            Width: =NCMErrorCard.Width - 40
+            X: =NCMErrorCard.X + 20
+            Y: =NCMErrorCard.Y + 12
+      - NCMErrorValue:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: |-
+              =With(
+                  { e: Max(
+                      Abs(Coalesce(Value(NCRise0.Text), 4) - 4),
+                      Abs(Coalesce(Value(NCRise25.Text), 8) - 8),
+                      Abs(Coalesce(Value(NCRise50.Text), 12) - 12),
+                      Abs(Coalesce(Value(NCRise75.Text), 16) - 16),
+                      Abs(Coalesce(Value(NCRise100.Text), 20) - 20),
+                      Abs(Coalesce(Value(NCFall0.Text), 4) - 4),
+                      Abs(Coalesce(Value(NCFall25.Text), 8) - 8),
+                      Abs(Coalesce(Value(NCFall50.Text), 12) - 12),
+                      Abs(Coalesce(Value(NCFall75.Text), 16) - 16),
+                      Abs(Coalesce(Value(NCFall100.Text), 20) - 20)
+                  ) / 16 * 100 },
+                  If(e < 1, RGBA(16, 124, 16, 1),
+                     If(e < 3, RGBA(204, 152, 0, 1), RGBA(196, 49, 75, 1)))
+              )
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Size: =26
+            Text: |-
+              =Text(
+                  Max(
+                      Abs(Coalesce(Value(NCRise0.Text), 4) - 4),
+                      Abs(Coalesce(Value(NCRise25.Text), 8) - 8),
+                      Abs(Coalesce(Value(NCRise50.Text), 12) - 12),
+                      Abs(Coalesce(Value(NCRise75.Text), 16) - 16),
+                      Abs(Coalesce(Value(NCRise100.Text), 20) - 20),
+                      Abs(Coalesce(Value(NCFall0.Text), 4) - 4),
+                      Abs(Coalesce(Value(NCFall25.Text), 8) - 8),
+                      Abs(Coalesce(Value(NCFall50.Text), 12) - 12),
+                      Abs(Coalesce(Value(NCFall75.Text), 16) - 16),
+                      Abs(Coalesce(Value(NCFall100.Text), 20) - 20)
+                  ) / 16 * 100,
+                  "0.000"
+              ) & " %  span"
+            Width: =(NCMErrorCard.Width - 60) / 2
+            X: =NCMErrorCard.X + 20
+            Y: =NCMErrorTitle.Y + NCMErrorTitle.Height + 4
+      - NCMAbsErrorValue:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Size: =26
+            Text: |-
+              =Text(
+                  Max(
+                      Abs(Coalesce(Value(NCRise0.Text), 4) - 4),
+                      Abs(Coalesce(Value(NCRise25.Text), 8) - 8),
+                      Abs(Coalesce(Value(NCRise50.Text), 12) - 12),
+                      Abs(Coalesce(Value(NCRise75.Text), 16) - 16),
+                      Abs(Coalesce(Value(NCRise100.Text), 20) - 20),
+                      Abs(Coalesce(Value(NCFall0.Text), 4) - 4),
+                      Abs(Coalesce(Value(NCFall25.Text), 8) - 8),
+                      Abs(Coalesce(Value(NCFall50.Text), 12) - 12),
+                      Abs(Coalesce(Value(NCFall75.Text), 16) - 16),
+                      Abs(Coalesce(Value(NCFall100.Text), 20) - 20)
+                  ),
+                  "0.0000"
+              ) & " mA  abs"
+            Width: =290
+            X: =NCMErrorCard.X + 40 + (NCMErrorCard.Width - 60) / 2
+            Y: =NCMErrorValue.Y
+      - NCMNextButton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Fill, 90%)
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Fill: =RGBA(16, 124, 16, 1)
+            Font: =Font.'Segoe UI'
+            Height: =54
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(14, 105, 14, 1)
+            OnSelect: |-
+              =Set(varAbsError,
+                  Max(
+                      Abs(Coalesce(Value(NCRise0.Text), 4) - 4),
+                      Abs(Coalesce(Value(NCRise25.Text), 8) - 8),
+                      Abs(Coalesce(Value(NCRise50.Text), 12) - 12),
+                      Abs(Coalesce(Value(NCRise75.Text), 16) - 16),
+                      Abs(Coalesce(Value(NCRise100.Text), 20) - 20),
+                      Abs(Coalesce(Value(NCFall0.Text), 4) - 4),
+                      Abs(Coalesce(Value(NCFall25.Text), 8) - 8),
+                      Abs(Coalesce(Value(NCFall50.Text), 12) - 12),
+                      Abs(Coalesce(Value(NCFall75.Text), 16) - 16),
+                      Abs(Coalesce(Value(NCFall100.Text), 20) - 20)
+                  )
+              );
+              Set(varErrorPctSpan, varAbsError / 16 * 100);
+              Navigate(NewCal_Equipment, ScreenTransition.None)
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(10, 85, 10, 1)
+            Text: |-
+              ="Next: Equipment  >"
+            Width: =(NCMContentBg.Width - 60) / 2
+            X: =NCMContentBg.X + 40 + (NCMContentBg.Width - 60) / 2
+            Y: =698
+      - NCMPrevButton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(225, 223, 221, 1)
+            BorderThickness: =1
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Fill, 90%)
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Segoe UI'
+            Height: =54
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =Self.Color
+            HoverFill: =RGBA(247, 247, 246, 1)
+            OnSelect: =Back()
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(237, 237, 236, 1)
+            Text: ="<  Previous"
+            Width: =(NCMContentBg.Width - 60) / 2
+            X: =NCMContentBg.X + 20
+            Y: =NCMNextButton.Y

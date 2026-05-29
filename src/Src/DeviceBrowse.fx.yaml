@@ -1,0 +1,412 @@
+"DeviceBrowse As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =RGBA(243, 242, 241, 1)
+
+    DBHeaderBar As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(0, 90, 158, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =80
+        PaddingLeft: =90
+        Size: =20
+        Text: ="Browse Devices"
+        Width: =Parent.Width
+        ZIndex: =1
+
+    DBBackButton As button:
+        BorderColor: =RGBA(255, 255, 255, 0.4)
+        BorderThickness: =1
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        HoverFill: =RGBA(255, 255, 255, 0.1)
+        OnSelect: =Back()
+        PressedFill: =RGBA(255, 255, 255, 0.2)
+        Text: ="<  Back"
+        Width: =70
+        X: =16
+        Y: =20
+        ZIndex: =2
+
+    DBContentBg As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Height: =Parent.Height - DBHeaderBar.Height
+        Text: =""
+        Width: =Min(Parent.Width, 900)
+        X: =(Parent.Width - Self.Width) / 2
+        Y: =DBHeaderBar.Y + DBHeaderBar.Height
+        ZIndex: =3
+
+    DBFilterCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =160
+        Text: =""
+        Width: =DBContentBg.Width - 40
+        X: =DBContentBg.X + 20
+        Y: =88
+        ZIndex: =4
+
+    DBFilterTitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Size: =16
+        Text: ="Find a device"
+        Width: =DBFilterCard.Width - 40
+        X: =DBFilterCard.X + 20
+        Y: =DBFilterCard.Y + 16
+        ZIndex: =5
+
+    DBSearchLabel As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =22
+        Size: =12
+        Text: ="Filter by Tag Number (Title), Description or Location"
+        Width: =DBFilterCard.Width - 40
+        X: =DBFilterCard.X + 20
+        Y: =DBFilterTitle.Y + DBFilterTitle.Height + 6
+        ZIndex: =6
+
+    SearchInput As text:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Default: =""
+        DelayOutput: =true
+        Font: =Font.'Segoe UI'
+        Height: =44
+        HintText: ="Type to filter the list below..."
+        Size: =13
+        Width: =DBFilterCard.Width - 40
+        X: =DBFilterCard.X + 20
+        Y: =DBSearchLabel.Y + DBSearchLabel.Height + 6
+        ZIndex: =7
+
+    DBPickerCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =110
+        Text: =""
+        Width: =DBContentBg.Width - 40
+        X: =DBContentBg.X + 20
+        Y: =DBFilterCard.Y + DBFilterCard.Height + 16
+        ZIndex: =8
+
+    DBPickerLabel As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =26
+        Text: ="Select a device"
+        Width: =DBPickerCard.Width - 40
+        X: =DBPickerCard.X + 20
+        Y: =DBPickerCard.Y + 14
+        ZIndex: =9
+
+    DeviceDropdown As dropdown:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        ChevronBackground: =RGBA(255, 255, 255, 1)
+        ChevronFill: =RGBA(50, 49, 48, 1)
+        Color: =RGBA(50, 49, 48, 1)
+        Default: =If(IsBlank(varSelectedDevice), "", varSelectedDevice.Title)
+        Font: =Font.'Segoe UI'
+        Height: =46
+        Items: |-
+            =Distinct(
+                Filter(
+                    'Device Calibration List - Seal Sands',
+                    IsBlank(SearchInput.Text) ||
+                    SearchInput.Text in Title ||
+                    SearchInput.Text in Description ||
+                    SearchInput.Text in Location
+                ),
+                Title
+            )
+        OnChange: |-
+            =Set(
+                varSelectedDevice,
+                LookUp(
+                    'Device Calibration List - Seal Sands',
+                    Title = DeviceDropdown.Selected.Value
+                )
+            )
+        PaddingLeft: =12
+        Size: =14
+        Width: =DBPickerCard.Width - 40
+        X: =DBPickerCard.X + 20
+        Y: =DBPickerLabel.Y + DBPickerLabel.Height + 6
+        ZIndex: =10
+
+    DBSummaryCard As label:
+        BorderColor: =RGBA(225, 223, 221, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =340
+        Text: =""
+        Width: =DBContentBg.Width - 40
+        X: =DBContentBg.X + 20
+        Y: =DBPickerCard.Y + DBPickerCard.Height + 16
+        ZIndex: =11
+
+    DBSummaryAccent As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =If(IsBlank(varSelectedDevice), RGBA(225, 223, 221, 1), RGBA(0, 120, 212, 1))
+        Height: =4
+        Text: =""
+        Width: =DBSummaryCard.Width
+        X: =DBSummaryCard.X
+        Y: =DBSummaryCard.Y
+        ZIndex: =12
+
+    DBSummaryTitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =34
+        Size: =18
+        Text: =If(IsBlank(varSelectedDevice), "No device selected", varSelectedDevice.Title)
+        Width: =DBSummaryCard.Width - 40
+        X: =DBSummaryCard.X + 20
+        Y: =DBSummaryCard.Y + 18
+        ZIndex: =13
+
+    DBSummarySubtitle As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =26
+        Size: =13
+        Text: =If(IsBlank(varSelectedDevice), "Use the picker above to choose a device.", Coalesce(varSelectedDevice.Description, ""))
+        Width: =DBSummaryCard.Width - 40
+        X: =DBSummaryCard.X + 20
+        Y: =DBSummaryTitle.Y + DBSummaryTitle.Height + 2
+        ZIndex: =14
+
+    DBFieldSerialLabel As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =20
+        Size: =11
+        Text: ="SERIAL NUMBER"
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBSummaryCard.X + 20
+        Y: =DBSummarySubtitle.Y + DBSummarySubtitle.Height + 16
+        ZIndex: =15
+
+    DBFieldSerialValue As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =24
+        Text: =Coalesce(varSelectedDevice.'Serial Number', "-")
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBFieldSerialLabel.X
+        Y: =DBFieldSerialLabel.Y + DBFieldSerialLabel.Height + 2
+        ZIndex: =16
+
+    DBFieldLocationLabel As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =20
+        Size: =11
+        Text: ="LOCATION"
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBSummaryCard.X + 40 + (DBSummaryCard.Width - 60) / 2
+        Y: =DBFieldSerialLabel.Y
+        ZIndex: =17
+
+    DBFieldLocationValue As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =24
+        Text: =Coalesce(varSelectedDevice.Location, "-")
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBFieldLocationLabel.X
+        Y: =DBFieldLocationLabel.Y + DBFieldLocationLabel.Height + 2
+        ZIndex: =18
+
+    DBFieldMfrLabel As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =20
+        Size: =11
+        Text: ="MANUFACTURER"
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBSummaryCard.X + 20
+        Y: =DBFieldSerialValue.Y + DBFieldSerialValue.Height + 12
+        ZIndex: =19
+
+    DBFieldMfrValue As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =24
+        Text: =Coalesce(varSelectedDevice.Manufacturer, "-")
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBFieldMfrLabel.X
+        Y: =DBFieldMfrLabel.Y + DBFieldMfrLabel.Height + 2
+        ZIndex: =20
+
+    DBFieldMeasurandLabel As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =20
+        Size: =11
+        Text: ="MEASURAND"
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBSummaryCard.X + 40 + (DBSummaryCard.Width - 60) / 2
+        Y: =DBFieldMfrLabel.Y
+        ZIndex: =21
+
+    DBFieldMeasurandValue As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =24
+        Text: =Coalesce(varSelectedDevice.Measurand, "-")
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBFieldMeasurandLabel.X
+        Y: =DBFieldMeasurandLabel.Y + DBFieldMeasurandLabel.Height + 2
+        ZIndex: =22
+
+    DBFieldLastCalLabel As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =20
+        Size: =11
+        Text: ="LAST CALIBRATED"
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBSummaryCard.X + 20
+        Y: =DBFieldMfrValue.Y + DBFieldMfrValue.Height + 12
+        ZIndex: =23
+
+    DBFieldLastCalValue As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =24
+        Text: |-
+            =If(
+                IsBlank(varSelectedDevice.'Calibrated Upon'),
+                "Never",
+                Text(DateValue(varSelectedDevice.'Calibrated Upon'), "yyyy-mm-dd")
+            )
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBFieldLastCalLabel.X
+        Y: =DBFieldLastCalLabel.Y + DBFieldLastCalLabel.Height + 2
+        ZIndex: =24
+
+    DBFieldLastByLabel As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(96, 94, 92, 1)
+        Font: =Font.'Segoe UI'
+        Height: =20
+        Size: =11
+        Text: ="CALIBRATED BY"
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBSummaryCard.X + 40 + (DBSummaryCard.Width - 60) / 2
+        Y: =DBFieldLastCalLabel.Y
+        ZIndex: =25
+
+    DBFieldLastByValue As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(50, 49, 48, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =24
+        Text: =Coalesce(varSelectedDevice.'Calibrated By', "-")
+        Visible: =Not IsBlank(varSelectedDevice)
+        Width: =(DBSummaryCard.Width - 60) / 2
+        X: =DBFieldLastByLabel.X
+        Y: =DBFieldLastByLabel.Y + DBFieldLastByLabel.Height + 2
+        ZIndex: =26
+
+    DBEmptyHint As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(161, 159, 157, 1)
+        Font: =Font.'Segoe UI'
+        Height: =100
+        Size: =13
+        Text: ="Select a device from the dropdown above to see its details."
+        Visible: =IsBlank(varSelectedDevice)
+        Width: =DBSummaryCard.Width - 60
+        X: =DBSummaryCard.X + 30
+        Y: =DBSummaryCard.Y + 120
+        ZIndex: =27
+
+    DBLogCalButton As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        DisabledFill: =RGBA(225, 223, 221, 1)
+        DisplayMode: =If(IsBlank(varSelectedDevice), DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(16, 124, 16, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =56
+        HoverFill: =RGBA(14, 105, 14, 1)
+        OnSelect: |-
+            =Set(varPrefilledAssetTitle, varSelectedDevice.Title);
+            Set(varCalType, "");
+            Set(varCalStep, 1);
+            Navigate(NewCal_Type, ScreenTransition.Cover)
+        PressedFill: =RGBA(10, 85, 10, 1)
+        Size: =15
+        Text: ="Log Calibration for this Device  >"
+        Width: =DBContentBg.Width - 40
+        X: =16
+        Y: =698
+        ZIndex: =28
+
